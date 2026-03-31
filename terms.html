@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>利用規約 — HUMAN MADE 人証</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700;800&family=Noto+Sans+JP:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--off:#f7f5f1;--white:#fff;--ink:#131110;--line:#e2ddd6;--muted:#968f87;--red:#b82018;--light:#ede9e1;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--off);color:var(--ink);font-family:'Noto Sans JP',sans-serif;font-weight:300;font-size:15px;line-height:1.8;-webkit-font-smoothing:antialiased;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--ink);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;border-bottom:1px solid #1a1a1a;}
+.nav-logo{display:flex;align-items:center;gap:.8rem;text-decoration:none;}
+.nav-kanji{font-family:'Shippori Mincho',serif;font-weight:800;font-size:1.1rem;color:#fff;border:1px solid #333;padding:0 .35rem;line-height:1.5;}
+.nav-name{font-family:'IBM Plex Mono',monospace;font-size:.5rem;letter-spacing:.18em;color:#555;text-transform:uppercase;}
+.nav-back{font-family:'IBM Plex Mono',monospace;font-size:.46rem;letter-spacing:.12em;color:#444;text-decoration:none;text-transform:uppercase;transition:color .15s;}
+.nav-back:hover{color:#fff;}
+.page{max-width:720px;margin:0 auto;padding:5rem 2rem 4rem;}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.44rem;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;}
+.eyebrow::after{content:'';flex:1;height:1px;background:var(--line);}
+h1{font-family:'Shippori Mincho',serif;font-weight:700;font-size:1.8rem;line-height:1.2;margin-bottom:.5rem;}
+.updated{font-family:'IBM Plex Mono',monospace;font-size:.44rem;color:var(--muted);margin-bottom:2.5rem;}
+.callout{background:var(--light);border-left:3px solid var(--red);padding:.9rem 1.1rem;margin:1.5rem 0;font-size:.84rem;line-height:1.85;}
+.callout strong{color:var(--ink);}
+h2{font-family:'Shippori Mincho',serif;font-weight:700;font-size:1.1rem;margin:2.5rem 0 .6rem;padding-bottom:.4rem;border-bottom:1px solid var(--line);}
+p{font-size:.86rem;color:#444;line-height:2;margin-bottom:.8rem;}
+ul{padding-left:1.2rem;margin-bottom:.8rem;}
+ul li{font-size:.86rem;color:#444;line-height:2;}
+.footer{background:var(--ink);padding:2rem;text-align:center;margin-top:4rem;}
+.footer-copy{font-family:'IBM Plex Mono',monospace;font-size:.42rem;color:#2a2520;}
+.footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:.8rem;}
+.footer-links a{font-family:'IBM Plex Mono',monospace;font-size:.42rem;color:#333;text-decoration:none;}
+.footer-links a:hover{color:#fff;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="nav-kanji">人証</span>
+    <span class="nav-name">Human Made</span>
+  </a>
+  <a href="index.html" class="nav-back">← トップに戻る</a>
+</nav>
+
+<div class="page">
+  <div class="eyebrow red" style="color:var(--red)">Legal</div>
+  <h1>利用規約</h1>
+  <div class="updated">最終更新：2026年4月1日 · Draft v0.1</div>
+
+  <div class="callout">
+    <strong>注意：</strong>本規約は弁護士確認前のたたき台です。特に免責・虚偽申請・返金に関する条項は今後専門家による確認を予定しています。
+  </div>
+
+  <h2>第1条（定義）</h2>
+  <ul>
+    <li>「当機関」：HUMAN MADE 人証機関（運営者）</li>
+    <li>「申請者」：本サービスを利用して認証を申請した個人または法人</li>
+    <li>「人証書」：当機関が発行する認証証明書（PDF形式）</li>
+    <li>「審査員」：当機関と業務委託契約を結んだ認定審査員</li>
+  </ul>
+
+  <h2>第2条（サービス内容）</h2>
+  <p>本サービスは、申請者が提出した制作物について、AIスクリーニングおよび審査員による評価を行い、人間による創作物と判断した場合に人証書を発行するサービスです。</p>
+
+  <h2>第3条（料金・支払い）</h2>
+  <ul>
+    <li>料金は申請時に前払いとします。</li>
+    <li>支払いはStripeを通じて処理されます。</li>
+    <li>審査の結果、認証できなかった場合は全額返金します。</li>
+    <li>返金はお支払い方法に応じて5〜10営業日以内に処理します。</li>
+  </ul>
+
+  <h2>第4条（認証有効期限）</h2>
+  <ul>
+    <li>VERIFIED・アーリーバードプラン：有効期限なし（無期限）</li>
+    <li>CERTIFIEDプラン：月額サブスクリプション継続中のみ有効</li>
+  </ul>
+
+  <h2>第5条（免責事項）</h2>
+  <p>本サービスの認証は「合理的な審査プロセスを経た当機関の意見表明」です。法的な証明書ではなく、認証結果の正確性について当機関は保証しません。認証結果に基づく判断・行動により生じた損害について、当機関は責任を負いません。</p>
+
+  <h2>第6条（禁止事項）</h2>
+  <ul>
+    <li>AI生成物を人間制作として申請することを禁止します。</li>
+    <li>虚偽申請が判明した場合、認証を取り消します。</li>
+    <li>虚偽申請による損害が生じた場合、損害賠償を請求する場合があります。</li>
+    <li>本サービスを不正な目的で利用することを禁止します。</li>
+  </ul>
+
+  <h2>第7条（個人情報の取り扱い）</h2>
+  <p>申請時にいただいた個人情報は、審査業務および連絡のためにのみ使用します。第三者への提供は行いません。詳細は<a href="privacy.html" style="color:var(--red);">プライバシーポリシー</a>をご覧ください。</p>
+
+  <h2>第8条（規約の変更）</h2>
+  <p>当機関は必要に応じて本規約を変更する場合があります。変更後の規約はウェブサイト上に掲載した時点で効力を生じます。</p>
+
+  <h2>第9条（準拠法・管轄）</h2>
+  <p>本規約は日本法に準拠します。本サービスに関する紛争については、日本の裁判所を管轄とします。</p>
+
+  <h2>お問い合わせ</h2>
+  <p>利用規約に関するご質問は X（@humanmade_jp）までDMにてお問い合わせください。</p>
+</div>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="index.html">トップ</a>
+    <a href="terms.html">利用規約</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+  </div>
+  <div class="footer-copy">© 2026 HUMAN MADE 人証機関. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
