@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="人間が作ったことを証明する反AI認証機関。AIスクリーニングと専門審査員による二重確認で制作物を審査し、PDF人証書・SNSバッジ・検証URLを発行します。">
+<meta property="og:title" content="HUMAN MADE 人証 — 人間制作認証機関">
+<meta property="og:description" content="「これ、AIじゃないですよね？」その疑いを、証明に変える。">
+<meta property="og:type" content="website">
+<title>HUMAN MADE 人証 — 人間制作認証機関</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700;800&family=Noto+Sans+JP:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════
+   TOKENS
+══════════════════════════════════ */
+:root{
+  --off:#f7f5f1; --white:#fff; --ink:#131110;
+  --line:#e2ddd6; --muted:#968f87; --red:#b82018;
+  --light:#ede9e1; --green:#2a5c2b; --amber:#b8860b;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--off);color:var(--ink);font-family:'Noto Sans JP',sans-serif;font-weight:300;font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;display:block;}
+
+/* ══════════════════════════════════
+   NAV
+══════════════════════════════════ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--ink);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;border-bottom:1px solid #1a1a1a;}
+.nav-logo{display:flex;align-items:center;gap:.8rem;text-decoration:none;}
+.nav-kanji{font-family:'Shippori Mincho',serif;font-weight:800;font-size:1.1rem;color:#fff;border:1px solid #333;padding:0 .35rem;line-height:1.5;}
+.nav-name{font-family:'IBM Plex Mono',monospace;font-size:.5rem;letter-spacing:.18em;color:#555;text-transform:uppercase;}
+.nav-right{display:flex;align-items:center;gap:1.2rem;}
+.nav-link{font-family:'IBM Plex Mono',monospace;font-size:.46rem;letter-spacing:.12em;color:#444;text-decoration:none;text-transform:uppercase;transition:color .15s;}
+.nav-link:hover{color:#fff;}
+.nav-cta{background:var(--red);color:#fff;padding:.35rem .9rem;font-family:'IBM Plex Mono',monospace;font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:opacity .15s;white-space:nowrap;}
+.nav-cta:hover{opacity:.85;}
+.nav-ham{display:none;background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer;}
+.mob-menu{display:none;position:fixed;top:52px;left:0;right:0;background:var(--ink);border-bottom:1px solid #1a1a1a;z-index:99;flex-direction:column;padding:1rem 2rem;}
+.mob-menu.open{display:flex;}
+.mob-menu a{font-family:'IBM Plex Mono',monospace;font-size:.5rem;letter-spacing:.12em;color:#555;text-decoration:none;text-transform:uppercase;padding:.6rem 0;border-bottom:.5px solid #1a1a1a;}
+.mob-menu a:last-child{border:none;color:var(--red);}
+
+/* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+.hero{min-height:100vh;padding-top:52px;background:var(--ink);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+.hero-bg-kanji{position:absolute;right:-5%;bottom:-10%;font-family:'Shippori Mincho',serif;font-weight:800;font-size:clamp(280px,40vw,520px);color:#1a1714;line-height:1;pointer-events:none;user-select:none;}
+.hero-inner{position:relative;z-index:2;max-width:860px;margin:0 auto;padding:5rem 2rem 4rem;}
+.hero-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.5rem;letter-spacing:.3em;color:var(--red);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem;}
+.hero-eyebrow::before{content:'';width:2rem;height:1px;background:var(--red);}
+.hero-title{font-family:'Shippori Mincho',serif;font-weight:800;font-size:clamp(2rem,6vw,3.8rem);line-height:1.15;color:#fff;margin-bottom:1.5rem;}
+.hero-title em{font-style:normal;color:var(--red);}
+.hero-sub{font-size:clamp(.9rem,2vw,1.05rem);color:#666;line-height:2;max-width:520px;margin-bottom:2.5rem;}
+.hero-actions{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+.btn-primary{background:var(--red);color:#fff;padding:.75rem 2rem;font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:opacity .15s;display:inline-block;}
+.btn-primary:hover{opacity:.85;}
+.btn-outline{border:1px solid #333;color:#555;padding:.75rem 2rem;font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:all .15s;display:inline-block;}
+.btn-outline:hover{border-color:#fff;color:#fff;}
+.hero-badge{margin-top:3rem;display:inline-flex;align-items:center;gap:.6rem;border:1px solid #1e1e1e;padding:.5rem .9rem;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
+.hero-badge-txt{font-family:'IBM Plex Mono',monospace;font-size:.44rem;color:#333;letter-spacing:.1em;text-transform:uppercase;}
+
+/* ══════════════════════════════════
+   TICKER
+══════════════════════════════════ */
+.ticker{background:var(--red);overflow:hidden;height:36px;display:flex;align-items:center;}
+.ticker-inner{display:flex;gap:0;white-space:nowrap;animation:tick 24s linear infinite;}
+.ticker-item{font-family:'IBM Plex Mono',monospace;font-size:.46rem;letter-spacing:.2em;color:#fff;text-transform:uppercase;padding:0 2rem;}
+.ticker-sep{color:rgba(255,255,255,.3);}
+@keyframes tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ══════════════════════════════════
+   SECTION SHARED
+══════════════════════════════════ */
+.section{padding:6rem 2rem;}
+.section-inner{max-width:860px;margin:0 auto;}
+.section-inner.wide{max-width:1080px;}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.46rem;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;}
+.eyebrow::after{content:'';flex:1;height:1px;background:var(--line);}
+.eyebrow.red{color:var(--red);}
+.section-title{font-family:'Shippori Mincho',serif;font-weight:700;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:1rem;}
+.section-lead{font-size:.92rem;color:var(--muted);line-height:2;max-width:560px;margin-bottom:3rem;}
+hr.rule{border:none;border-top:1px solid var(--line);margin:3rem 0;}
+
+/* ══════════════════════════════════
+   PROBLEM
+══════════════════════════════════ */
+.problem{background:var(--ink);}
+.problem .eyebrow{color:#333;}
+.problem .eyebrow::after{background:#1e1e1e;}
+.problem .section-title{color:#fff;}
+.problem .section-lead{color:#555;}
+.voice-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#1a1a1a;border:1px solid #1a1a1a;margin:2rem 0;}
+.voice{background:#0d0c0b;padding:1.8rem;}
+.voice-q{font-family:'Shippori Mincho',serif;font-weight:700;font-size:1.05rem;color:#fff;line-height:1.6;margin-bottom:1rem;}
+.voice-q::before{content:'"';color:var(--red);font-size:1.4rem;line-height:0;vertical-align:-.3rem;margin-right:.2rem;}
+.voice-who{font-family:'IBM Plex Mono',monospace;font-size:.42rem;letter-spacing:.12em;color:#333;text-transform:uppercase;}
+.stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#1a1a1a;border:1px solid #1a1a1a;margin-top:3rem;}
+.stat{background:#0d0c0b;padding:1.8rem;}
+.stat-n{font-family:'IBM Plex Mono',monospace;font-size:2.2rem;color:#fff;line-height:1;margin-bottom:.4rem;}
+.stat-n.red{color:var(--red);}
+.stat-l{font-size:.78rem;color:#444;line-height:1.6;}
+
+/* ══════════════════════════════════
+   HOW IT WORKS
+══════════════════════════════════ */
+.steps-wrap{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0;}
+.step{background:#fff;padding:1.5rem 1.8rem;display:grid;grid-template-columns:3.5rem 1fr;gap:1.2rem;align-items:start;}
+.step-num{font-family:'IBM Plex Mono',monospace;font-size:1.6rem;color:var(--line);line-height:1;padding-top:.1rem;}
+.step-content{}
+.step-title{font-weight:500;font-size:1rem;margin-bottom:.3rem;}
+.step-desc{font-size:.82rem;color:var(--muted);line-height:1.85;}
+.step-time{font-family:'IBM Plex Mono',monospace;font-size:.4rem;letter-spacing:.1em;color:var(--red);text-transform:uppercase;margin-top:.5rem;}
+
+/* ══════════════════════════════════
+   PRICING
+══════════════════════════════════ */
+.pricing{background:var(--off);}
+.plans-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0;}
+.plan{background:#fff;padding:2rem;}
+.plan.featured{background:var(--ink);color:#fff;}
+.plan.early{background:var(--light);}
+.plan-tag{font-family:'IBM Plex Mono',monospace;font-size:.4rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;}
+.plan.featured .plan-tag{color:#444;}
+.plan-name{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.8rem;}
+.plan-price{font-family:'Shippori Mincho',serif;font-weight:700;font-size:2.2rem;line-height:1;margin-bottom:.2rem;}
+.plan-unit{font-family:'IBM Plex Mono',monospace;font-size:.46rem;color:var(--muted);margin-bottom:1.5rem;}
+.plan.featured .plan-unit{color:#555;}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:0;}
+.plan-features li{font-size:.82rem;padding:.45rem 0;border-bottom:.5px solid var(--line);display:flex;align-items:flex-start;gap:.5rem;line-height:1.6;}
+.plan.featured .plan-features li{border-bottom-color:#1e1e1e;color:#888;}
+.plan-features li::before{content:'—';color:var(--muted);flex-shrink:0;}
+.plan-cta{display:block;margin-top:1.5rem;padding:.6rem 1rem;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .15s;border:1px solid var(--ink);color:var(--ink);}
+.plan-cta:hover{background:var(--ink);color:#fff;}
+.plan.featured .plan-cta{border-color:var(--red);background:var(--red);color:#fff;}
+.plan.featured .plan-cta:hover{opacity:.85;}
+.plan.early .plan-cta{border-color:var(--red);color:var(--red);}
+.plan.early .plan-cta:hover{background:var(--red);color:#fff;}
+.early-badge{display:inline-block;background:var(--red);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:.38rem;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .5rem;margin-bottom:.6rem;}
+.plan-note{font-size:.72rem;color:var(--muted);margin-top:.8rem;line-height:1.7;}
+
+/* ══════════════════════════════════
+   MARK SHOWCASE
+══════════════════════════════════ */
+.mark-showcase{background:var(--ink);padding:5rem 2rem;}
+.mark-inner{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.mark-left{}
+.mark-left .eyebrow{color:#333;}
+.mark-left .eyebrow::after{background:#1e1e1e;}
+.mark-left .section-title{color:#fff;}
+.mark-left .section-lead{color:#444;}
+.mark-visual{display:flex;flex-direction:column;gap:1.5rem;}
+.mark-box{width:160px;height:160px;border:1px solid #252220;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;position:relative;}
+.mark-box::after{content:'';position:absolute;inset:8px;border:.5px solid #1a1a1a;}
+.mark-top{font-family:'IBM Plex Mono',monospace;font-size:.32rem;letter-spacing:.3em;color:#2a2520;text-transform:uppercase;display:block;z-index:1;}
+.mark-kanji{font-family:'Shippori Mincho',serif;font-weight:800;font-size:2.2rem;color:#fff;display:block;z-index:1;margin:.3rem 0;}
+.mark-line{width:40px;height:.5px;background:#222;z-index:1;}
+.mark-bot{font-family:'IBM Plex Mono',monospace;font-size:.28rem;letter-spacing:.12em;color:#2a2520;display:block;z-index:1;margin-top:.4rem;text-transform:uppercase;}
+.mark-features{display:flex;flex-direction:column;gap:.8rem;margin-top:1.5rem;}
+.mf{display:flex;align-items:flex-start;gap:.8rem;font-size:.84rem;color:#555;}
+.mf-icon{color:var(--red);flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:.5rem;padding-top:.15rem;}
+
+/* ══════════════════════════════════
+   FAQ
+══════════════════════════════════ */
+.faqs{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0;}
+.faq{background:#fff;}
+.faq-q{padding:1.1rem 1.3rem;font-weight:500;font-size:.9rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;gap:1rem;}
+.faq-q::after{content:'+';font-family:'IBM Plex Mono',monospace;color:var(--muted);flex-shrink:0;font-size:.9rem;}
+.faq.open .faq-q::after{content:'−';}
+.faq-a{display:none;padding:0 1.3rem 1.1rem;font-size:.84rem;color:var(--muted);line-height:2;border-top:.5px solid var(--line);}
+.faq.open .faq-a{display:block;}
+
+/* ══════════════════════════════════
+   FORM
+══════════════════════════════════ */
+.form-section{background:var(--ink);}
+.form-section .eyebrow{color:#333;}
+.form-section .eyebrow::after{background:#1e1e1e;}
+.form-section .section-title{color:#fff;}
+.form-section .section-lead{color:#555;}
+.form-wrap{background:#0d0c0b;border:1px solid #1e1e1e;padding:2.5rem;margin-top:2rem;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.form-full{grid-column:span 2;}
+.f-label{font-family:'IBM Plex Mono',monospace;font-size:.4rem;letter-spacing:.15em;color:#333;text-transform:uppercase;display:block;margin-bottom:.35rem;}
+.f-input{width:100%;background:#131110;border:none;border-bottom:1px solid #252220;padding:.6rem .5rem;font-family:'Noto Sans JP',sans-serif;font-size:.88rem;color:#fff;outline:none;transition:border-color .15s;}
+.f-input:focus{border-bottom-color:var(--red);}
+.f-select{width:100%;background:#131110;border:none;border-bottom:1px solid #252220;padding:.6rem .5rem;font-family:'Noto Sans JP',sans-serif;font-size:.88rem;color:#888;outline:none;appearance:none;cursor:pointer;}
+.f-select:focus{border-bottom-color:var(--red);}
+textarea.f-input{resize:vertical;min-height:80px;line-height:1.8;}
+.f-check-group{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:.3rem;}
+.f-check{display:flex;align-items:center;gap:.5rem;cursor:pointer;}
+.f-check input{accent-color:var(--red);width:14px;height:14px;}
+.f-check span{font-size:.82rem;color:#666;}
+.f-submit{margin-top:1.5rem;width:100%;background:var(--red);color:#fff;border:none;padding:.9rem;font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:opacity .15s;}
+.f-submit:hover{opacity:.85;}
+.f-note{font-family:'IBM Plex Mono',monospace;font-size:.4rem;color:#2a2520;text-align:center;margin-top:.8rem;line-height:1.8;}
+/* thanks */
+.thanks{display:none;text-align:center;padding:3rem 2rem;}
+.thanks.show{display:block;}
+.thanks-mark{font-family:'Shippori Mincho',serif;font-weight:800;font-size:3rem;color:#fff;display:block;margin-bottom:1rem;}
+.thanks-title{font-family:'Shippori Mincho',serif;font-weight:700;font-size:1.4rem;color:#fff;margin-bottom:.8rem;}
+.thanks-sub{font-size:.84rem;color:#555;line-height:2;}
+
+/* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
+.footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:3rem 2rem;}
+.footer-inner{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;align-items:start;}
+.footer-brand{}
+.footer-kanji{font-family:'Shippori Mincho',serif;font-weight:800;font-size:1.4rem;color:#fff;display:block;margin-bottom:.3rem;}
+.footer-name{font-family:'IBM Plex Mono',monospace;font-size:.44rem;letter-spacing:.18em;color:#333;text-transform:uppercase;display:block;margin-bottom:.8rem;}
+.footer-desc{font-size:.78rem;color:#2a2520;line-height:1.85;}
+.footer-col-title{font-family:'IBM Plex Mono',monospace;font-size:.4rem;letter-spacing:.2em;color:#2a2520;text-transform:uppercase;margin-bottom:.8rem;}
+.footer-links{display:flex;flex-direction:column;gap:.4rem;}
+.footer-links a{font-size:.8rem;color:#333;text-decoration:none;transition:color .15s;}
+.footer-links a:hover{color:#fff;}
+.footer-bottom{max-width:860px;margin:2rem auto 0;border-top:1px solid #1a1a1a;padding-top:1.2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;}
+.footer-copy{font-family:'IBM Plex Mono',monospace;font-size:.4rem;color:#2a2520;letter-spacing:.1em;}
+.footer-legal{display:flex;gap:1.2rem;}
+.footer-legal a{font-family:'IBM Plex Mono',monospace;font-size:.4rem;color:#2a2520;text-decoration:none;letter-spacing:.08em;}
+.footer-legal a:hover{color:#555;}
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+@media(max-width:768px){
+  .nav-link{display:none;}
+  .nav-cta{display:none;}
+  .nav-ham{display:block;}
+  .hero-inner{padding:3rem 1.5rem 3rem;}
+  .section{padding:4rem 1.5rem;}
+  .voice-grid{grid-template-columns:1fr;}
+  .stats-row{grid-template-columns:1fr 1fr;}
+  .plans-grid{grid-template-columns:1fr;}
+  .mark-inner{grid-template-columns:1fr;gap:2rem;}
+  .form-grid{grid-template-columns:1fr;}
+  .form-full{grid-column:span 1;}
+  .footer-inner{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;}
+}
+@media(max-width:480px){
+  .stats-row{grid-template-columns:1fr;}
+  .hero-actions{flex-direction:column;align-items:flex-start;}
+  .btn-primary,.btn-outline{width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">
+    <span class="nav-kanji">人証</span>
+    <span class="nav-name">Human Made</span>
+  </a>
+  <div class="nav-right">
+    <a href="#how" class="nav-link">審査の流れ</a>
+    <a href="#pricing" class="nav-link">料金</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+    <a href="#apply" class="nav-cta">申請する</a>
+  </div>
+  <button class="nav-ham" onclick="toggleMenu()">☰</button>
+</nav>
+<div class="mob-menu" id="mob-menu">
+  <a href="#how" onclick="toggleMenu()">審査の流れ</a>
+  <a href="#pricing" onclick="toggleMenu()">料金</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="#apply" onclick="toggleMenu()">申請する →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-kanji">人証</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Anti-AI Certification Agency — Beta 2026</div>
+    <h1 class="hero-title">
+      「これ、AIじゃ<br>ないですよね？」<br>
+      <em>その疑いを、<br>証明に変える。</em>
+    </h1>
+    <p class="hero-sub">人間が作ったことを審査・証明する認証機関。AIスクリーニングと専門審査員の二重確認で制作物を審査し、PDF人証書とSNSバッジを発行します。</p>
+    <div class="hero-actions">
+      <a href="#apply" class="btn-primary">アーリーバード申請 — ¥3,000</a>
+      <a href="#how" class="btn-outline">審査の流れを見る</a>
+    </div>
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span class="hero-badge-txt">Beta受付中 · 先着50名限定 · アーリーバード ¥3,000</span>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">HUMAN MADE</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">人証機関</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">ANTI-AI CERTIFICATION</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">人間が作ったことを、証明する。</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">VERIFIED BY HUMANS</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">PDF人証書発行</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">HUMAN MADE</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">人証機関</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">ANTI-AI CERTIFICATION</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">人間が作ったことを、証明する。</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">VERIFIED BY HUMANS</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">PDF人証書発行</span><span class="ticker-item ticker-sep">·</span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="section problem" id="problem">
+  <div class="section-inner">
+    <div class="eyebrow">Problem</div>
+    <h2 class="section-title">証明する手段が、<br>今この瞬間、存在しない。</h2>
+    <p class="section-lead">AIが生成するコンテンツが全体の半数を超えた今、クリエイターは「これは人間が作った」と証明できなくなっています。</p>
+
+    <div class="voice-grid">
+      <div class="voice">
+        <p class="voice-q">これ、AIで作ったんでしょ？って言われた。証明できなくて何も言えなかった。</p>
+        <div class="voice-who">Illustrator · 5yr</div>
+      </div>
+      <div class="voice">
+        <p class="voice-q">クライアントにAI疑惑をかけられてキャンセルされた。制作過程を見せても信じてもらえなかった。</p>
+        <div class="voice-who">Graphic Designer · Freelance</div>
+      </div>
+      <div class="voice">
+        <p class="voice-q">公募に落ちた。後で「AIっぽい」という理由だったと聞いた。どう証明すればよかったのか。</p>
+        <div class="voice-who">Writer · Creator</div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-n red">57%</div>
+        <div class="stat-l">2025年時点でAI生成・支援コンテンツが占める推計比率</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">700万</div>
+        <div class="stat-l">日本のクリエイター人口。全員がこの問題に直面している</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n red">0社</div>
+        <div class="stat-l">「人間が作った」を証明する認証機関の現在の競合数</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="section" id="how">
+  <div class="section-inner">
+    <div class="eyebrow red">How it works</div>
+    <h2 class="section-title">5つのステップで、<br>証明が完成する。</h2>
+    <p class="section-lead">申請から人証書の受け取りまで、最短48時間。すべてオンラインで完結します。</p>
+
+    <div class="steps-wrap">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">申請フォームに記入</div>
+          <div class="step-desc">作品名・カテゴリ・使用ツールを入力。制作過程の記録（下書き・タイムラプス等）があれば添付。</div>
+          <div class="step-time">5分</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">作品データを送付</div>
+          <div class="step-desc">申請後に届くウェルカムメールに返信する形で作品ファイルを送付。高解像度推奨。</div>
+          <div class="step-time">即日</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">AIスクリーニング（5ツール）</div>
+          <div class="step-desc">Hive Moderation・Illuminarty・GPTZero・Originality.ai・AI or Notの5種で並行スクリーニング。5ツール中4以上が「人間製」と判定で次のステップへ。</div>
+          <div class="step-time">自動処理</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <div class="step-title">専門審査員による確認</div>
+          <div class="step-desc">当該ジャンルで3年以上の商業実績を持つ審査員が制作プロセスを照合。線の揺らぎ・修正の跡・メタデータを総合的に評価。</div>
+          <div class="step-time">1〜2営業日</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <div class="step-title">人証書・バッジを発行</div>
+          <div class="step-desc">PDF人証書・SNSバッジ3種・検証URLを発行。証明書には固有の認証番号が付き、誰でもリアルタイムで真正性を確認できます。否決の場合は全額返金。</div>
+          <div class="step-time">審査完了次第</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARK -->
+<section class="mark-showcase">
+  <div class="mark-inner">
+    <div class="mark-left">
+      <div class="eyebrow">Certificate & Badge</div>
+      <h2 class="section-title" style="color:#fff;">人証書と<br>バッジが届く。</h2>
+      <p class="section-lead" style="color:#444;">PDF形式の人証書と、SNSプロフィール・作品投稿に使えるデジタルバッジを発行します。証明書には検証URLが付き、誰でも真正性を確認できます。</p>
+      <div class="mark-features">
+        <div class="mf"><span class="mf-icon">✦</span><span>PDF人証書（A4・印刷対応）</span></div>
+        <div class="mf"><span class="mf-icon">✦</span><span>SNSバッジ3種（正方形・円形・バナー）</span></div>
+        <div class="mf"><span class="mf-icon">✦</span><span>検証URL（humanmade.jp/v/HM-XXXX）</span></div>
+        <div class="mf"><span class="mf-icon">✦</span><span>認証リストへの掲載</span></div>
+      </div>
+    </div>
+    <div class="mark-visual">
+      <div style="display:flex;gap:1.5rem;align-items:center;">
+        <div class="mark-box">
+          <span class="mark-top">Human Made</span>
+          <span class="mark-kanji">人証</span>
+          <div class="mark-line"></div>
+          <span class="mark-bot">Certified</span>
+        </div>
+        <div style="font-size:.78rem;color:#333;line-height:2;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:.38rem;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem;">HUMAN MADE CERTIFIED</div>
+          作品名・認証番号・発行日・<br>審査員コメントが記載された<br>PDF証明書を発行します。
+        </div>
+      </div>
+      <div style="border:1px solid #1e1e1e;padding:1rem 1.2rem;background:#0d0c0b;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:.38rem;color:#333;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem;">検証URL例</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:.52rem;color:var(--red);">humanmade.jp/v/HM-2026-00001</div>
+        <div style="font-size:.74rem;color:#2a2520;margin-top:.4rem;">このURLで誰でも真正性を確認できます</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section pricing" id="pricing">
+  <div class="section-inner">
+    <div class="eyebrow red">Pricing</div>
+    <h2 class="section-title">シンプルな料金体系。<br>否決なら全額返金。</h2>
+    <p class="section-lead">まず1点試してみてください。否決の場合は全額返金します。</p>
+
+    <div class="plans-grid">
+      <div class="plan early">
+        <div class="early-badge">先着50名限定</div>
+        <div class="plan-tag">Early Bird</div>
+        <div class="plan-name">アーリーバード</div>
+        <div class="plan-price">¥3,000</div>
+        <div class="plan-unit">/ 作品1点（通常¥8,000）</div>
+        <ul class="plan-features">
+          <li>AIスクリーニング（5種）</li>
+          <li>審査員1名</li>
+          <li>PDF人証書</li>
+          <li>SNSバッジ3種</li>
+          <li>72時間以内完了</li>
+          <li>否決 → 全額返金</li>
+          <li>認証有効期限：<strong>無期限</strong></li>
+        </ul>
+        <a href="#apply" class="plan-cta">今すぐ申請する</a>
+        <p class="plan-note">※ 先着50名限定。枠がなくなり次第通常価格になります。</p>
+      </div>
+      <div class="plan">
+        <div class="plan-tag">Standard</div>
+        <div class="plan-name">VERIFIED</div>
+        <div class="plan-price">¥8,000</div>
+        <div class="plan-unit">/ 作品1点</div>
+        <ul class="plan-features">
+          <li>AIスクリーニング（5種）</li>
+          <li>審査員1名</li>
+          <li>PDF人証書</li>
+          <li>SNSバッジ3種</li>
+          <li>72時間以内完了</li>
+          <li>否決 → 全額返金</li>
+          <li>認証有効期限：<strong>無期限</strong></li>
+        </ul>
+        <a href="#apply" class="plan-cta">申請する</a>
+      </div>
+      <div class="plan featured">
+        <div class="plan-tag">Professional</div>
+        <div class="plan-name">CERTIFIED</div>
+        <div class="plan-price">¥15,000</div>
+        <div class="plan-unit">/ 月（10作品まで）</div>
+        <ul class="plan-features">
+          <li>AIスクリーニング（5種）</li>
+          <li>審査員2名・独立評価</li>
+          <li>PDF人証書</li>
+          <li>SNSバッジ全種</li>
+          <li>48時間以内（優先）</li>
+          <li>認証済みプロフィール掲載</li>
+          <li>否決 → 全額返金</li>
+          <li>認証有効期限：<strong>サブスク継続中</strong></li>
+        </ul>
+        <a href="#apply" class="plan-cta">申請する</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-inner">
+    <div class="eyebrow red">FAQ</div>
+    <h2 class="section-title">よくある質問。</h2>
+
+    <div class="faqs">
+      <div class="faq">
+        <div class="faq-q">審査に落ちた場合はどうなりますか？</div>
+        <div class="faq-a">否決の場合はお支払い金額の全額を返金します。返金はお支払い方法に応じて5〜10営業日以内に処理されます。理由もお伝えします。</div>
+      </div>
+      <div class="faq">
+        <div class="faq-q">どんなカテゴリの作品でも申請できますか？</div>
+        <div class="faq-a">イラスト・文章・デザイン・写真・音楽・映像など幅広く対応しています。申請フォームでカテゴリを選択してください。ジャンルに応じた専門審査員が担当します。</div>
+      </div>
+      <div class="faq">
+        <div class="faq-q">制作過程の記録がない場合でも申請できますか？</div>
+        <div class="faq-a">申請は可能ですが、制作過程の記録（下書き・タイムラプス・レイヤーファイル等）があると審査が通りやすくなります。記録がない場合でもAIスクリーニングと審査員評価を行いますが、判断が難しい場合は追加資料をお願いする場合があります。</div>
+      </div>
+      <div class="faq">
+        <div class="faq-q">人証書は法的な証明書として使えますか？</div>
+        <div class="faq-a">本サービスの認証は「合理的な審査プロセスを経た当機関の意見表明」です。法的な証明書ではありませんが、AI疑惑への説明・クライアントへの提示・公募への添付などに活用できます。</div>
+      </div>
+      <div class="faq">
+        <div class="faq-q">審査にはどのくらい時間がかかりますか？</div>
+        <div class="faq-a">作品データを受け取ってから、VERIFIED プランは72時間以内、CERTIFIED プランは48時間以内を目標にしています。込み合っている場合はメールでご連絡します。</div>
+      </div>
+      <div class="faq">
+        <div class="faq-q">人証書に有効期限はありますか？</div>
+        <div class="faq-a">発行した人証書に有効期限はありません。一度認証された作品は永続的に証明されます。検証URLも継続して有効です。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="section form-section" id="apply">
+  <div class="section-inner">
+    <div class="eyebrow">Apply</div>
+    <h2 class="section-title">申請する。</h2>
+    <p class="section-lead">フォームを送信後、24時間以内に確認メールをお送りします。支払いリンクはメールでご案内します。</p>
+
+    <div class="form-wrap" id="form-wrap">
+      <div class="form-grid">
+        <div>
+          <label class="f-label">お名前（活動名可）*</label>
+          <input class="f-input" type="text" id="f-name" placeholder="山田 花子">
+        </div>
+        <div>
+          <label class="f-label">メールアドレス *</label>
+          <input class="f-input" type="email" id="f-email" placeholder="your@email.com">
+        </div>
+        <div>
+          <label class="f-label">X（Twitter）アカウント</label>
+          <input class="f-input" type="text" id="f-x" placeholder="@username">
+        </div>
+        <div>
+          <label class="f-label">申請プラン *</label>
+          <select class="f-select" id="f-plan">
+            <option value="">選択してください</option>
+            <option value="early">アーリーバード ¥3,000（先着50名）</option>
+            <option value="verified">VERIFIED ¥8,000</option>
+            <option value="certified">CERTIFIED ¥15,000/月</option>
+          </select>
+        </div>
+        <div>
+          <label class="f-label">作品名・タイトル *</label>
+          <input class="f-input" type="text" id="f-title" placeholder="夕暮れのコバルト">
+        </div>
+        <div>
+          <label class="f-label">カテゴリ *</label>
+          <select class="f-select" id="f-cat">
+            <option value="">選択してください</option>
+            <option>イラスト・絵画</option>
+            <option>デザイン</option>
+            <option>文章・小説・ライティング</option>
+            <option>音楽・作曲</option>
+            <option>写真</option>
+            <option>映像・動画</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="form-full">
+          <label class="f-label">使用したソフト・ツール *</label>
+          <input class="f-input" type="text" id="f-tools" placeholder="例：CLIP STUDIO PAINT EX、Photoshop">
+        </div>
+        <div class="form-full">
+          <label class="f-label">制作プロセスの記録</label>
+          <div class="f-check-group">
+            <label class="f-check"><input type="checkbox"><span>下書き・ラフスケッチあり</span></label>
+            <label class="f-check"><input type="checkbox"><span>タイムラプスあり</span></label>
+            <label class="f-check"><input type="checkbox"><span>レイヤーファイルあり</span></label>
+            <label class="f-check"><input type="checkbox"><span>記録なし</span></label>
+          </div>
+        </div>
+        <div class="form-full">
+          <label class="f-label">申請の背景・動機（任意）</label>
+          <textarea class="f-input" id="f-reason" placeholder="AI疑惑を受けた / 証明が必要な案件がある / その他"></textarea>
+        </div>
+        <div class="form-full">
+          <label class="f-check"><input type="checkbox" id="f-agree"><span style="font-size:.82rem;color:#555;">利用規約に同意します</span></label>
+        </div>
+      </div>
+      <button class="f-submit" onclick="submitForm()">申請を送信する →</button>
+      <p class="f-note">送信後、24時間以内に確認メールをお送りします。<br>支払いリンクはメールでご案内します。</p>
+    </div>
+
+    <div class="thanks" id="thanks">
+      <span class="thanks-mark">人証</span>
+      <h3 class="thanks-title">申請を受け付けました。</h3>
+      <p class="thanks-sub">ご入力いただいたメールアドレスに<br>24時間以内に確認メールをお送りします。<br><br>支払いリンクはメールにてご案内します。<br>ご不明な点はXの @humanmade_jp までDMください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-kanji">人証</span>
+      <span class="footer-name">Human Made</span>
+      <p class="footer-desc">人間が作ったことを審査・証明する反AI認証機関。AIが溢れる時代に、人間の創造を守る。</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Service</div>
+      <div class="footer-links">
+        <a href="#how">審査の流れ</a>
+        <a href="#pricing">料金プラン</a>
+        <a href="#apply">申請する</a>
+        <a href="#faq">よくある質問</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-links">
+        <a href="https://x.com/humanmade_jp" target="_blank">X @humanmade_jp</a>
+        <a href="#apply">申請フォーム</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 HUMAN MADE 人証機関. All rights reserved.</span>
+    <div class="footer-legal">
+      <a href="#">利用規約</a>
+      <a href="#">プライバシーポリシー</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* NAV MENU */
+function toggleMenu(){
+  document.getElementById('mob-menu').classList.toggle('open');
+}
+document.querySelectorAll('.mob-menu a').forEach(function(a){
+  a.addEventListener('click',function(){
+    document.getElementById('mob-menu').classList.remove('open');
+  });
+});
+
+/* FAQ */
+document.querySelectorAll('.faq-q').forEach(function(q){
+  q.addEventListener('click',function(){
+    q.closest('.faq').classList.toggle('open');
+  });
+});
+
+/* FORM */
+function submitForm(){
+  var name=document.getElementById('f-name').value.trim();
+  var email=document.getElementById('f-email').value.trim();
+  var plan=document.getElementById('f-plan').value;
+  var title=document.getElementById('f-title').value.trim();
+  var cat=document.getElementById('f-cat').value;
+  var tools=document.getElementById('f-tools').value.trim();
+  var agree=document.getElementById('f-agree').checked;
+  if(!name||!email||!plan||!title||!cat||!tools){
+    alert('必須項目（*）をすべて入力してください。');return;
+  }
+  if(!agree){alert('利用規約に同意してください。');return;}
+  // 送信完了表示
+  document.getElementById('form-wrap').style.display='none';
+  document.getElementById('thanks').classList.add('show');
+}
+
+/* SMOOTH SCROLL offset for fixed nav */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var target=document.querySelector(this.getAttribute('href'));
+    if(target){
+      e.preventDefault();
+      var top=target.getBoundingClientRect().top+window.scrollY-60;
+      window.scrollTo({top:top,behavior:'smooth'});
+    }
+  });
+});
+</script>
+</body>
+</html>
