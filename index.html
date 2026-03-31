@@ -310,6 +310,123 @@ textarea.f-input{resize:vertical;min-height:80px;line-height:1.8;}
 </div>
 
 <!-- PROBLEM -->
+<section class="section problem" id="pr.f-submit{margin-top:1.5rem;width:100%;background:var(--red);color:#fff;border:none;padding:.9rem;font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:opacity .15s;}
+.f-submit:hover{opacity:.85;}
+.f-note{font-family:'IBM Plex Mono',monospace;font-size:.4rem;color:#2a2520;text-align:center;margin-top:.8rem;line-height:1.8;}
+/* thanks */
+.thanks{display:none;text-align:center;padding:3rem 2rem;}
+.thanks.show{display:block;}
+.thanks-mark{font-family:'Shippori Mincho',serif;font-weight:800;font-size:3rem;color:#fff;display:block;margin-bottom:1rem;}
+.thanks-title{font-family:'Shippori Mincho',serif;font-weight:700;font-size:1.4rem;color:#fff;margin-bottom:.8rem;}
+.thanks-sub{font-size:.84rem;color:#555;line-height:2;}
+
+/* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
+.footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:3rem 2rem;}
+.footer-inner{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;align-items:start;}
+.footer-brand{}
+.footer-kanji{font-family:'Shippori Mincho',serif;font-weight:800;font-size:1.4rem;color:#fff;display:block;margin-bottom:.3rem;}
+.footer-name{font-family:'IBM Plex Mono',monospace;font-size:.44rem;letter-spacing:.18em;color:#333;text-transform:uppercase;display:block;margin-bottom:.8rem;}
+.footer-desc{font-size:.78rem;color:#2a2520;line-height:1.85;}
+.footer-col-title{font-family:'IBM Plex Mono',monospace;font-size:.4rem;letter-spacing:.2em;color:#2a2520;text-transform:uppercase;margin-bottom:.8rem;}
+.footer-links{display:flex;flex-direction:column;gap:.4rem;}
+.footer-links a{font-size:.8rem;color:#333;text-decoration:none;transition:color .15s;}
+.footer-links a:hover{color:#fff;}
+.footer-bottom{max-width:860px;margin:2rem auto 0;border-top:1px solid #1a1a1a;padding-top:1.2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;}
+.footer-copy{font-family:'IBM Plex Mono',monospace;font-size:.4rem;color:#2a2520;letter-spacing:.1em;}
+.footer-legal{display:flex;gap:1.2rem;}
+.footer-legal a{font-family:'IBM Plex Mono',monospace;font-size:.4rem;color:#2a2520;text-decoration:none;letter-spacing:.08em;}
+.footer-legal a:hover{color:#555;}
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+@media(max-width:768px){
+  .nav-link{display:none;}
+  .nav-cta{display:none;}
+  .nav-ham{display:block;}
+  .hero-inner{padding:3rem 1.5rem 3rem;}
+  .section{padding:4rem 1.5rem;}
+  .voice-grid{grid-template-columns:1fr;}
+  .stats-row{grid-template-columns:1fr 1fr;}
+  .plans-grid{grid-template-columns:1fr;}
+  .mark-inner{grid-template-columns:1fr;gap:2rem;}
+  .form-grid{grid-template-columns:1fr;}
+  .form-full{grid-column:span 1;}
+  .footer-inner{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;}
+}
+@media(max-width:480px){
+  .stats-row{grid-template-columns:1fr;}
+  .hero-actions{flex-direction:column;align-items:flex-start;}
+  .btn-primary,.btn-outline{width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">
+    <span class="nav-kanji">人証</span>
+    <span class="nav-name">Human Made</span>
+  </a>
+  <div class="nav-right">
+    <a href="#how" class="nav-link">審査の流れ</a>
+    <a href="#pricing" class="nav-link">料金</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+    <a href="#apply" class="nav-cta">申請する</a>
+  </div>
+  <button class="nav-ham" onclick="toggleMenu()">☰</button>
+</nav>
+<div class="mob-menu" id="mob-menu">
+  <a href="#how" onclick="toggleMenu()">審査の流れ</a>
+  <a href="#pricing" onclick="toggleMenu()">料金</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="#apply" onclick="toggleMenu()">申請する →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-kanji">人証</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Anti-AI Certification Agency — Beta 2026</div>
+    <h1 class="hero-title">
+      「これ、AIじゃ<br>ないですよね？」<br>
+      <em>その疑いを、<br>証明に変える。</em>
+    </h1>
+    <p class="hero-sub">人間が作ったことを審査・証明する認証機関。AIスクリーニングと専門審査員の二重確認で制作物を審査し、PDF人証書とSNSバッジを発行します。</p>
+    <div class="hero-actions">
+      <a href="#apply" class="btn-primary">アーリーバード申請 — ¥3,000</a>
+      <a href="#how" class="btn-outline">審査の流れを見る</a>
+    </div>
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span class="hero-badge-txt">Beta受付中 · 先着50名限定 · アーリーバード ¥3,000</span>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">HUMAN MADE</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">人証機関</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">ANTI-AI CERTIFICATION</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">人間が作ったことを、証明する。</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">VERIFIED BY HUMANS</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">PDF人証書発行</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">HUMAN MADE</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">人証機関</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">ANTI-AI CERTIFICATION</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">人間が作ったことを、証明する。</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">VERIFIED BY HUMANS</span><span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">PDF人証書発行</span><span class="ticker-item ticker-sep">·</span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
 <section class="section problem" id="problem">
   <div class="section-inner">
     <div class="eyebrow">Problem</div>
@@ -376,365 +493,3 @@ textarea.f-input{resize:vertical;min-height:80px;line-height:1.8;}
         <div class="step-num">03</div>
         <div class="step-content">
           <div class="step-title">AIスクリーニング（5ツール）</div>
-          <div class="step-desc">Hive Moderation・Illuminarty・GPTZero・Originality.ai・AI or Notの5種で並行スクリーニング。5ツール中4以上が「人間製」と判定で次のステップへ。</div>
-          <div class="step-time">自動処理</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <div class="step-content">
-          <div class="step-title">専門審査員による確認</div>
-          <div class="step-desc">当該ジャンルで3年以上の商業実績を持つ審査員が制作プロセスを照合。線の揺らぎ・修正の跡・メタデータを総合的に評価。</div>
-          <div class="step-time">1〜2営業日</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">05</div>
-        <div class="step-content">
-          <div class="step-title">人証書・バッジを発行</div>
-          <div class="step-desc">PDF人証書・SNSバッジ3種・検証URLを発行。証明書には固有の認証番号が付き、誰でもリアルタイムで真正性を確認できます。否決の場合は全額返金。</div>
-          <div class="step-time">審査完了次第</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MARK -->
-<section class="mark-showcase">
-  <div class="mark-inner">
-    <div class="mark-left">
-      <div class="eyebrow">Certificate & Badge</div>
-      <h2 class="section-title" style="color:#fff;">人証書と<br>バッジが届く。</h2>
-      <p class="section-lead" style="color:#444;">PDF形式の人証書と、SNSプロフィール・作品投稿に使えるデジタルバッジを発行します。証明書には検証URLが付き、誰でも真正性を確認できます。</p>
-      <div class="mark-features">
-        <div class="mf"><span class="mf-icon">✦</span><span>PDF人証書（A4・印刷対応）</span></div>
-        <div class="mf"><span class="mf-icon">✦</span><span>SNSバッジ3種（正方形・円形・バナー）</span></div>
-        <div class="mf"><span class="mf-icon">✦</span><span>検証URL（humanmade.jp/v/HM-XXXX）</span></div>
-        <div class="mf"><span class="mf-icon">✦</span><span>認証リストへの掲載</span></div>
-      </div>
-    </div>
-    <div class="mark-visual">
-      <div style="display:flex;gap:1.5rem;align-items:center;">
-        <div class="mark-box">
-          <span class="mark-top">Human Made</span>
-          <span class="mark-kanji">人証</span>
-          <div class="mark-line"></div>
-          <span class="mark-bot">Certified</span>
-        </div>
-        <div style="font-size:.78rem;color:#333;line-height:2;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:.38rem;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem;">HUMAN MADE CERTIFIED</div>
-          作品名・認証番号・発行日・<br>審査員コメントが記載された<br>PDF証明書を発行します。
-        </div>
-      </div>
-      <div style="border:1px solid #1e1e1e;padding:1rem 1.2rem;background:#0d0c0b;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:.38rem;color:#333;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem;">検証URL例</div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:.52rem;color:var(--red);">humanmade.jp/v/HM-2026-00001</div>
-        <div style="font-size:.74rem;color:#2a2520;margin-top:.4rem;">このURLで誰でも真正性を確認できます</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section class="section pricing" id="pricing">
-  <div class="section-inner">
-    <div class="eyebrow red">Pricing</div>
-    <h2 class="section-title">シンプルな料金体系。<br>否決なら全額返金。</h2>
-    <p class="section-lead">まず1点試してみてください。否決の場合は全額返金します。</p>
-
-    <div class="plans-grid">
-      <div class="plan early">
-        <div class="early-badge">先着50名限定</div>
-        <div class="plan-tag">Early Bird</div>
-        <div class="plan-name">アーリーバード</div>
-        <div class="plan-price">¥3,000</div>
-        <div class="plan-unit">/ 作品1点（通常¥8,000）</div>
-        <ul class="plan-features">
-          <li>AIスクリーニング（5種）</li>
-          <li>審査員1名</li>
-          <li>PDF人証書</li>
-          <li>SNSバッジ3種</li>
-          <li>72時間以内完了</li>
-          <li>否決 → 全額返金</li>
-          <li>認証有効期限：<strong>無期限</strong></li>
-        </ul>
-        <a href="#apply" class="plan-cta">今すぐ申請する</a>
-        <p class="plan-note">※ 先着50名限定。枠がなくなり次第通常価格になります。</p>
-      </div>
-      <div class="plan">
-        <div class="plan-tag">Standard</div>
-        <div class="plan-name">VERIFIED</div>
-        <div class="plan-price">¥8,000</div>
-        <div class="plan-unit">/ 作品1点</div>
-        <ul class="plan-features">
-          <li>AIスクリーニング（5種）</li>
-          <li>審査員1名</li>
-          <li>PDF人証書</li>
-          <li>SNSバッジ3種</li>
-          <li>72時間以内完了</li>
-          <li>否決 → 全額返金</li>
-          <li>認証有効期限：<strong>無期限</strong></li>
-        </ul>
-        <a href="#apply" class="plan-cta">申請する</a>
-      </div>
-      <div class="plan featured">
-        <div class="plan-tag">Professional</div>
-        <div class="plan-name">CERTIFIED</div>
-        <div class="plan-price">¥15,000</div>
-        <div class="plan-unit">/ 月（10作品まで）</div>
-        <ul class="plan-features">
-          <li>AIスクリーニング（5種）</li>
-          <li>審査員2名・独立評価</li>
-          <li>PDF人証書</li>
-          <li>SNSバッジ全種</li>
-          <li>48時間以内（優先）</li>
-          <li>認証済みプロフィール掲載</li>
-          <li>否決 → 全額返金</li>
-          <li>認証有効期限：<strong>サブスク継続中</strong></li>
-        </ul>
-        <a href="#apply" class="plan-cta">申請する</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="section" id="faq">
-  <div class="section-inner">
-    <div class="eyebrow red">FAQ</div>
-    <h2 class="section-title">よくある質問。</h2>
-
-    <div class="faqs">
-      <div class="faq">
-        <div class="faq-q">審査に落ちた場合はどうなりますか？</div>
-        <div class="faq-a">否決の場合はお支払い金額の全額を返金します。返金はお支払い方法に応じて5〜10営業日以内に処理されます。理由もお伝えします。</div>
-      </div>
-      <div class="faq">
-        <div class="faq-q">どんなカテゴリの作品でも申請できますか？</div>
-        <div class="faq-a">イラスト・文章・デザイン・写真・音楽・映像など幅広く対応しています。申請フォームでカテゴリを選択してください。ジャンルに応じた専門審査員が担当します。</div>
-      </div>
-      <div class="faq">
-        <div class="faq-q">制作過程の記録がない場合でも申請できますか？</div>
-        <div class="faq-a">申請は可能ですが、制作過程の記録（下書き・タイムラプス・レイヤーファイル等）があると審査が通りやすくなります。記録がない場合でもAIスクリーニングと審査員評価を行いますが、判断が難しい場合は追加資料をお願いする場合があります。</div>
-      </div>
-      <div class="faq">
-        <div class="faq-q">人証書は法的な証明書として使えますか？</div>
-        <div class="faq-a">本サービスの認証は「合理的な審査プロセスを経た当機関の意見表明」です。法的な証明書ではありませんが、AI疑惑への説明・クライアントへの提示・公募への添付などに活用できます。</div>
-      </div>
-      <div class="faq">
-        <div class="faq-q">審査にはどのくらい時間がかかりますか？</div>
-        <div class="faq-a">作品データを受け取ってから、VERIFIED プランは72時間以内、CERTIFIED プランは48時間以内を目標にしています。込み合っている場合はメールでご連絡します。</div>
-      </div>
-      <div class="faq">
-        <div class="faq-q">人証書に有効期限はありますか？</div>
-        <div class="faq-a">発行した人証書に有効期限はありません。一度認証された作品は永続的に証明されます。検証URLも継続して有効です。</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FORM -->
-<section class="section form-section" id="apply">
-  <div class="section-inner">
-    <div class="eyebrow">Apply</div>
-    <h2 class="section-title">申請する。</h2>
-    <p class="section-lead">フォームを送信後、24時間以内に確認メールをお送りします。支払いリンクはメールでご案内します。</p>
-
-    <div class="form-wrap" id="form-wrap">
-      <div class="form-grid">
-        <div>
-          <label class="f-label">お名前（活動名可）*</label>
-          <input class="f-input" type="text" id="f-name" placeholder="山田 花子">
-        </div>
-        <div>
-          <label class="f-label">メールアドレス *</label>
-          <input class="f-input" type="email" id="f-email" placeholder="your@email.com">
-        </div>
-        <div>
-          <label class="f-label">X（Twitter）アカウント</label>
-          <input class="f-input" type="text" id="f-x" placeholder="@username">
-        </div>
-        <div>
-          <label class="f-label">申請プラン *</label>
-          <select class="f-select" id="f-plan">
-            <option value="">選択してください</option>
-            <option value="early">アーリーバード ¥3,000（先着50名）</option>
-            <option value="verified">VERIFIED ¥8,000</option>
-            <option value="certified">CERTIFIED ¥15,000/月</option>
-          </select>
-        </div>
-        <div>
-          <label class="f-label">作品名・タイトル *</label>
-          <input class="f-input" type="text" id="f-title" placeholder="夕暮れのコバルト">
-        </div>
-        <div>
-          <label class="f-label">カテゴリ *</label>
-          <select class="f-select" id="f-cat">
-            <option value="">選択してください</option>
-            <option>イラスト・絵画</option>
-            <option>デザイン</option>
-            <option>文章・小説・ライティング</option>
-            <option>音楽・作曲</option>
-            <option>写真</option>
-            <option>映像・動画</option>
-            <option>その他</option>
-          </select>
-        </div>
-        <div class="form-full">
-          <label class="f-label">使用したソフト・ツール *</label>
-          <input class="f-input" type="text" id="f-tools" placeholder="例：CLIP STUDIO PAINT EX、Photoshop">
-        </div>
-        <div class="form-full">
-          <label class="f-label">制作プロセスの記録</label>
-          <div class="f-check-group">
-            <label class="f-check"><input type="checkbox"><span>下書き・ラフスケッチあり</span></label>
-            <label class="f-check"><input type="checkbox"><span>タイムラプスあり</span></label>
-            <label class="f-check"><input type="checkbox"><span>レイヤーファイルあり</span></label>
-            <label class="f-check"><input type="checkbox"><span>記録なし</span></label>
-          </div>
-        </div>
-        <div class="form-full">
-          <label class="f-label">申請の背景・動機（任意）</label>
-          <textarea class="f-input" id="f-reason" placeholder="AI疑惑を受けた / 証明が必要な案件がある / その他"></textarea>
-        </div>
-        <div class="form-full">
-          <label class="f-check"><input type="checkbox" id="f-agree"><span style="font-size:.82rem;color:#555;">利用規約に同意します</span></label>
-        </div>
-      </div>
-      <button class="f-submit" onclick="submitForm()">申請を送信する →</button>
-      <p class="f-note">送信後、24時間以内に確認メールをお送りします。<br>支払いリンクはメールでご案内します。</p>
-    </div>
-
-    <div class="thanks" id="thanks">
-      <span class="thanks-mark">人証</span>
-      <h3 class="thanks-title">申請を受け付けました。</h3>
-      <p class="thanks-sub">ご入力いただいたメールアドレスに<br>24時間以内に確認メールをお送りします。<br><br>支払いリンクはメールにてご案内します。<br>ご不明な点はXの @humanmade_jp までDMください。</p>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <span class="footer-kanji">人証</span>
-      <span class="footer-name">Human Made</span>
-      <p class="footer-desc">人間が作ったことを審査・証明する反AI認証機関。AIが溢れる時代に、人間の創造を守る。</p>
-    </div>
-    <div>
-      <div class="footer-col-title">Service</div>
-      <div class="footer-links">
-        <a href="#how">審査の流れ</a>
-        <a href="#pricing">料金プラン</a>
-        <a href="#apply">申請する</a>
-        <a href="#faq">よくある質問</a>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Contact</div>
-      <div class="footer-links">
-        <a href="https://x.com/humanmade_jp" target="_blank">X @humanmade_jp</a>
-        <a href="#apply">申請フォーム</a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2026 HUMAN MADE 人証機関. All rights reserved.</span>
-    <div class="footer-legal">
-      <a href="#">利用規約</a>
-      <a href="#">プライバシーポリシー</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-/* NAV MENU */
-function toggleMenu(){
-  document.getElementById('mob-menu').classList.toggle('open');
-}
-document.querySelectorAll('.mob-menu a').forEach(function(a){
-  a.addEventListener('click',function(){
-    document.getElementById('mob-menu').classList.remove('open');
-  });
-});
-
-/* FAQ */
-document.querySelectorAll('.faq-q').forEach(function(q){
-  q.addEventListener('click',function(){
-    q.closest('.faq').classList.toggle('open');
-  });
-});
-
-/* FORM */
-function submitForm(){
-  var name=document.getElementById('f-name').value.trim();
-  var email=document.getElementById('f-email').value.trim();
-  var plan=document.getElementById('f-plan').value;
-  var title=document.getElementById('f-title').value.trim();
-  var cat=document.getElementById('f-cat').value;
-  var tools=document.getElementById('f-tools').value.trim();
-  var agree=document.getElementById('f-agree').checked;
-  if(!name||!email||!plan||!title||!cat||!tools){
-    alert('必須項目（*）をすべて入力してください。');return;
-  }
-  if(!agree){alert('利用規約に同意してください。');return;}
-
-  // チェックボックスの値を収集
-  var records=[];
-  document.querySelectorAll('.f-check input[type=checkbox]:not(#f-agree)').forEach(function(cb){
-    if(cb.checked) records.push(cb.nextElementSibling.textContent);
-  });
-  var reason=document.getElementById('f-reason').value.trim();
-  var xacc=document.getElementById('f-x').value.trim();
-
-  var btn=document.querySelector('.f-submit');
-  btn.textContent='送信中...';
-  btn.disabled=true;
-
-  fetch('https://formspree.io/f/maqljbge',{
-    method:'POST',
-    headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({
-      '名前':name,
-      'メール':email,
-      'Xアカウント':xacc||'未記入',
-      'プラン':plan,
-      '作品名':title,
-      'カテゴリ':cat,
-      '使用ツール':tools,
-      'プロセス記録':records.length?records.join('、'):'なし',
-      '申請動機':reason||'未記入'
-    })
-  })
-  .then(function(res){
-    if(res.ok){
-      document.getElementById('form-wrap').style.display='none';
-      document.getElementById('thanks').classList.add('show');
-    } else {
-      alert('送信に失敗しました。時間をおいて再度お試しください。');
-      btn.textContent='申請を送信する →';
-      btn.disabled=false;
-    }
-  })
-  .catch(function(){
-    alert('通信エラーが発生しました。インターネット接続を確認してください。');
-    btn.textContent='申請を送信する →';
-    btn.disabled=false;
-  });
-}
-
-/* SMOOTH SCROLL offset for fixed nav */
-document.querySelectorAll('a[href^="#"]').forEach(function(a){
-  a.addEventListener('click',function(e){
-    var target=document.querySelector(this.getAttribute('href'));
-    if(target){
-      e.preventDefault();
-      var top=target.getBoundingClientRect().top+window.scrollY-60;
-      window.scrollTo({top:top,behavior:'smooth'});
-    }
-  });
-});
-</script>
-</body>
-</html>
